@@ -1,5 +1,3 @@
-Este repositorio contiene los ejemplos preparados por David J. Brenes para la realización del curso "Cloud computing. Desarrollo de aplicaciones y minería web" organizado por la Universidad de Oviedo.
+Esta rama del repositorio corresponde al ejercicio realizado durante la unidad del curso "Consumo de servicios web REST".
 
-Cada rama del repositorio corresponde a una de las unidades de contenidos programadas para el curso, excepto la rama <<master>> que trata temas generales del curso (preparación de la máquina sobre la que realizar el curso, scripts de actualización de los ejemplos, etc).
-
-
+El ejercicio consiste en la implementación de un buscador de twitter haciendo uso de la API Rest de Twitter.
