@@ -18,6 +18,7 @@ foreach ($tweets as $tweet)
 	<li>
 	<div></div><img src="<?php echo $tweet->user->avatar_url; ?>" alt="<?php echo $tweet->user->login; ?>"/> <?php echo $tweet->user->login; ?>: <?php echo $tweet->text; ?></div>
 	<div><?php echo $tweet->created_at->format('Y-m-d H:i'); ?></div>
+	<a href="/retweet.php">Retweet</a>
 	</li>
 <?php } ?>	
 </ul>
