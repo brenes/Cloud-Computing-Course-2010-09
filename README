@@ -1,5 +1,3 @@
-Este repositorio contiene los ejemplos preparados por David J. Brenes para la realización del curso "Cloud computing. Desarrollo de aplicaciones y minería web" organizado por la Universidad de Oviedo.
+Esta rama corresponde a la parte del curso centrada en Hadoop.
 
-Cada rama del repositorio corresponde a una de las unidades de contenidos programadas para el curso, excepto la rama <<master>> que trata temas generales del curso (preparación de la máquina sobre la que realizar el curso, scripts de actualización de los ejemplos, etc).
-
-
+La idea de esta rama es crear una aplicación que realice el análisis de trend topics de una serie de tweets. Debido al tamaño los datasets no serán incorporados en el repositorio, pero se trata de repositorios creados a través de Twapper Keeper, por lo que cualquier fichero de tweets con ese formato valdrá.
