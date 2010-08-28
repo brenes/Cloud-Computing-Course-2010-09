@@ -9,6 +9,7 @@ import org.apache.hadoop.mapred.FileInputFormat;
 import org.apache.hadoop.mapred.FileOutputFormat;
 import org.apache.hadoop.mapred.JobClient;
 import org.apache.hadoop.mapred.JobConf;
+import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
 import org.apache.hadoop.mapred.lib.LongSumReducer;
 import org.apache.hadoop.mapred.KeyValueTextInputFormat;
@@ -41,12 +42,12 @@ public class TwitterCount extends Configured implements Tool {
         job.setJobName("MyJob"); 
         job.setMapperClass(TokenCountMapper.class); 
         job.setReducerClass(LongSumReducer.class); 
-         
-        job.setInputFormat(KeyValueTextInputFormat.class); 
+        
+        job.setInputFormat(TextInputFormat.class);
+        
         job.setOutputFormat(TextOutputFormat.class); 
         job.setOutputKeyClass(Text.class); 
-        job.setOutputValueClass(LongWritable.class); 
-        job.set("key.value.separator.in.input.line", ",");
+        job.setOutputValueClass(LongWritable.class);
         
         // Esto hará que solo tengamos un fichero de salida, aunque restringirá el número de reducers a 1
         job.setNumReduceTasks(1);
