@@ -17,6 +17,8 @@ import org.apache.hadoop.mapred.lib.TokenCountMapper;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
+import InputFormats.TwitterInputFormat;
+
 public class TwitterCount extends Configured implements Tool {
 
 	public TwitterCount(Configuration conf) {
@@ -43,7 +45,7 @@ public class TwitterCount extends Configured implements Tool {
         job.setMapperClass(TokenCountMapper.class); 
         job.setReducerClass(LongSumReducer.class); 
         
-        job.setInputFormat(TextInputFormat.class);
+        job.setInputFormat(TwitterInputFormat.class);
         
         job.setOutputFormat(TextOutputFormat.class); 
         job.setOutputKeyClass(Text.class); 
