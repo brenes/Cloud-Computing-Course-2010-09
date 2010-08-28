@@ -18,6 +18,7 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 import InputFormats.TwitterInputFormat;
+import StopWordMapper.NoStopWordCounterMapper;
 
 public class TwitterCount extends Configured implements Tool {
 
@@ -42,7 +43,7 @@ public class TwitterCount extends Configured implements Tool {
         FileOutputFormat.setOutputPath(job, out); 
          
         job.setJobName("MyJob"); 
-        job.setMapperClass(TokenCountMapper.class); 
+        job.setMapperClass(NoStopWordCounterMapper.class); 
         job.setReducerClass(LongSumReducer.class); 
         
         job.setInputFormat(TwitterInputFormat.class);
