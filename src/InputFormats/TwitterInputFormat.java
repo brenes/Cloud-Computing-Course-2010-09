@@ -20,20 +20,22 @@ import org.apache.hadoop.mapred.LineRecordReader;
 import org.apache.hadoop.mapred.RecordReader;
 import org.apache.hadoop.mapred.Reporter;
 
+import Types.Tweet;
+
 /**
  * Clase que implementa el lector de datos. Nos vamos a basar en el
  * FileInputFormat porque vamos a leer de fichero y no nos interesa implementar
  * todas las operaciones.
  * 
  */
-public class TwitterInputFormat extends FileInputFormat<LongWritable, Text>
-		implements InputFormat<LongWritable, Text> {
+public class TwitterInputFormat extends FileInputFormat<LongWritable, Tweet>
+		implements InputFormat<LongWritable, Tweet> {
 
 	/**
 	 * Implementación del Patrón Abstract Factory para obtener el RecordReader
 	 * deseado.
 	 */
-	public RecordReader<LongWritable, Text> getRecordReader(InputSplit split,
+	public RecordReader<LongWritable, Tweet> getRecordReader(InputSplit split,
 			JobConf job, Reporter reporter) throws IOException {
 		return new TwitterRecordReader((FileSplit) split, job, reporter);
 	}
@@ -48,11 +50,11 @@ public class TwitterInputFormat extends FileInputFormat<LongWritable, Text>
 	 * tweet.
 	 */
 	public static class TwitterRecordReader implements
-			RecordReader<LongWritable, Text> {
+			RecordReader<LongWritable, Tweet> {
 
 		private LineRecordReader reader;
 		private LongWritable key;
-		private Text value;
+		private Tweet value;
 		private JobConf job;
 		private Date minDate;
 		private Date maxDate;
@@ -106,8 +108,8 @@ public class TwitterInputFormat extends FileInputFormat<LongWritable, Text>
 		}
 
 		@Override
-		public Text createValue() {
-			return new Text();
+		public Tweet createValue() {
+			return new Tweet();
 		}
 
 		@Override
@@ -121,15 +123,16 @@ public class TwitterInputFormat extends FileInputFormat<LongWritable, Text>
 		}
 
 		@Override
-		public boolean next(LongWritable key, Text value) throws IOException {
-			while (this.reader.next(key, value)) {
+		public boolean next(LongWritable key, Tweet value) throws IOException {
+			Text lineValue = new Text();
+			while (this.reader.next(key, lineValue)) {
 				// Una vez hecha la lectura dividimos la línea por el carácter
 				// ','(recordemos que se trata de un CSV) y cogemos el primero
 				// de
 				// los registros (el mensaje).
-				String line = value.toString();
+				String line = lineValue.toString();
 				String[] tokens = line.split(",", 13);
-				value.set(tokens[0]);
+				value.setMessage(tokens[0]);
 
 				String time = tokens[11];
 
@@ -142,6 +145,7 @@ public class TwitterInputFormat extends FileInputFormat<LongWritable, Text>
 							|| (date.equals(this.maxDate))
 							|| ((date.after(this.minDate) && (date
 									.before(this.maxDate))))) {
+						value.setDatetime(date);
 						return true;
 					}
 				} catch (ParseException e) {

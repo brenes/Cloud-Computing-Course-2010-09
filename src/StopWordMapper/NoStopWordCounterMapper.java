@@ -13,10 +13,10 @@ import org.apache.hadoop.mapred.Mapper;
 import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reporter;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+import Types.Tweet;
 
 public class NoStopWordCounterMapper extends MapReduceBase implements
-		Mapper<LongWritable, Text, Text, LongWritable> {
+		Mapper<LongWritable, Tweet, Text, Tweet> {
 
 	public static List<String> stopWords = Arrays.asList(new String[] { "de",
 			"la", "que", "el", "en", "y", "a", "los", "del", "se", "las",
@@ -114,18 +114,17 @@ public class NoStopWordCounterMapper extends MapReduceBase implements
 			"would", "yet", "you", "your", "yours", "yourself", "yourselves",
 			"the" });
 
-	public static LongWritable one = new LongWritable(1);
-
 	@Override
-	public void map(LongWritable key, Text value,
-			OutputCollector<Text, LongWritable> output, Reporter reporter)
+	public void map(LongWritable key, Tweet value,
+			OutputCollector<Text, Tweet> output, Reporter reporter)
 			throws IOException {
-		StringTokenizer tokens = new StringTokenizer(value.toString());
+		StringTokenizer tokens = new StringTokenizer(value.getMessage()
+				.toString());
 
 		while (tokens.hasMoreTokens()) {
 			String token = tokens.nextToken();
 			if (!NoStopWordCounterMapper.stopWords.contains(token)) {
-				output.collect(new Text(token), one);
+				output.collect(new Text(token), value);
 			}
 		}
 
