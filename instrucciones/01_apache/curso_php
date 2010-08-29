@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+	ServerName buscador
+
+	DocumentRoot /home/curso/Escritorio/curso/buscador/
+	<Directory /home/curso/Escritorio/curso/buscador/>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+</VirtualHost>

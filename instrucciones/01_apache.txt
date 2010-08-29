@@ -1,0 +1,32 @@
+Necesitamos que Apache sirva nuestra aplicación PHP, por lo que tenemos que llevar a cabo ciertas operaciones de configuración:
+
+- Crear el sitio de nuestra aplicación: Necesitaremos que Apache vaya a buscar los ficheros PHP de nuestra aplicación a una carpeta concreta. Para ello se crea un site en Apache:
+
+	<VirtualHost *:80>
+		ServerAdmin webmaster@localhost
+		ServerName buscador
+
+		DocumentRoot /home/curso/Escritorio/curso/buscador/
+		<Directory /home/curso/Escritorio/curso/buscador/>
+			Options Indexes FollowSymLinks MultiViews
+			AllowOverride None
+			Order allow,deny
+			allow from all
+		</Directory>
+	</VirtualHost>
+
+En la carpeta 01_buscador está el fichero de configuración de apache creado. Lo moveremos a la carpeta de configuración de Apache y reiniciaremos Apache para que cargue los cambios de configuración
+
+	> sudo cp 01_apache/curso_php /etc/apache2/sites-available/curso_php
+	> sudo ln -s /etc/apache2/sites-available/curso_php /etc/apache2/sites-enabled/curso_php
+	> sudo /etc/init.d/apache2 force-reload
+
+A continuación cargaremos en /etc/hosts una linea para que reconozca http://buscador como una dirección local.
+
+	> sudo gedit /etc/hosts
+
+La línea a introducir es:
+
+	127.0.0.1	buscador
+
+
