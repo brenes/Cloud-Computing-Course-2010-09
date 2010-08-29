@@ -37,6 +37,15 @@ public class TwitterCount extends Configured implements Tool {
         
         JobConf job = new JobConf(conf, TwitterCount.class); 
          
+        if (args.length > 2)
+        {
+        	job.set("twitter_input.min_date", args[2]);
+        }
+
+        if (args.length > 3)
+        {
+        	job.set("twitter_input.max_date", args[3]);
+        }
         Path in = new Path(args[0]); 
         Path out = new Path(args[1]); 
         FileInputFormat.setInputPaths(job, in); 
