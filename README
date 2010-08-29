@@ -1,5 +1,1 @@
-Este repositorio contiene los ejemplos preparados por David J. Brenes para la realización del curso "Cloud computing. Desarrollo de aplicaciones y minería web" organizado por la Universidad de Oviedo.
-
-Cada rama del repositorio corresponde a una de las unidades de contenidos programadas para el curso, excepto la rama <<master>> que trata temas generales del curso (preparación de la máquina sobre la que realizar el curso, scripts de actualización de los ejemplos, etc).
-
-
+Esta rama corresponde al bloque de contenidos referente a CouchDB. En concreto, en esta rama se situará la aplicación desarrollada sobre CouchDB (CouchApp), pero la unión de PHP y CouchDB se hará en la rama referente a PHP y Rest pues es donde está la aplicación que alimentará a CouchDB.
