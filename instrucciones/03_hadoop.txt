@@ -1,0 +1,13 @@
+Hemos descargado Hadoop desde su página en Rediris: http://apache.rediris.es/hadoop/core/
+
+Hemos escogido la última versión disponible, la 0.21.0.
+
+Tras descargar el tar.gz y descomprimirlo lo situamos en la carpeta bin del usuario (en nuestro caso /home/curso/bin/) quitando la información de versión del nombre de la carpeta (es decir, al final queda /home/curso/bin/hadoop).
+
+Para tenerlo disponible desde la línea de órdenes editamos el .bashrc e incorporamos:
+
+	export PATH=$PATH:/home/curso/bin/hadoop/bin
+
+Además, indicamos la JAVA_HOME para que Hadoop pueda encontrarla:
+
+	export JAVA_HOME=/usr/lib/jvm/java-6-openjdk

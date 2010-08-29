@@ -1,0 +1,4 @@
+Para facilitar el desarrollo de una aplicación sobre CouchDB vamos a instalar couchapp, una aplicación que facilita la gestión de las aplicaciones.
+
+	> sudo easy_install -U couchapp
+

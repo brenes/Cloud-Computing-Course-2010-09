@@ -1,0 +1,19 @@
+Para crear una AMI basada en nuestro sistema necesitamos las AMI Tools de Amazon.
+
+Las podemos descargar de http://developer.amazonwebservices.com/connect/entry.jspa?externalID=368
+
+Si descargamos el rpm luego podemos usar 'alien' para generar el paquete de Debian e instalarlo:
+
+	> sudo alien ec2-ami-tools.noarch.rpm 
+	> sudo dpkg -i ec2-ami-tools_1.3-56067_all.deb 
+
+Una vez instalado hay que incluir: 
+
+	export RUBYLIB=$RUBYLIB:/usr/lib/site_ruby/ 
+
+En el fichero /etc/bash.bashrc para que cargue las bibliotecas de ruby bien
+
+A continuación nos hacemos usuarios root y ejecutamos la orden:
+
+	> sudo su
+	> ec2-bundle-vol -c cert-amazon.pem -k pk-amazon.pem --user user_id -d image -e image -r x86_64 -s 4096 --no-inherit
