@@ -1,6 +1,9 @@
 <?php 
 
 require ("model/tweet.php");
+require_once ("lib/php-on-couch/couch.php");
+require_once 'lib/php-on-couch/couchClient.php';
+require_once 'lib/php-on-couch/couchDocument.php';
 
 class SearchController
 {
@@ -21,7 +24,10 @@ class SearchController
 		
 		// close cURL resource, and free up system resources
 		curl_close($ch);
-		
+
+
+		$client = new couchClient ('http://localhost:5984','tweets');
+
 		foreach ($tweets_json->results as $tweet_json)
 		{
 			$tweet = new Tweet();
@@ -34,9 +40,16 @@ class SearchController
 			$tweet->user->avatar_url = $tweet_json->profile_image_url;
 			
 			$tweets[] = $tweet;
-			
-		} 
-		
+
+			// No we try to store the tweet in our couch database
+			try {
+				$tweet_doc = $client->getDoc($tweet_json->id."");
+			}catch ( Exception $e ) {
+				$tweet_doc = new couchDocument($client);
+				$tweet_doc->set( array('_id'=>$tweet_json->id."",'author'=> $tweet_json->from_user,'message'=>$tweet_json->text, "client" => $tweet_json->source, "created_at" => $tweet_json->created_at ));
+			}
+		}
+
 		return $tweets;
 	}
 }
