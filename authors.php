@@ -10,7 +10,6 @@ $authors = $controller->execute();
 	<input type="text" name="q" value="<?php echo $_GET["q"]?>" />
 </form>
 
-<?php var_dump($authors) ?>
 <div><?php echo $authors->total_rows ?> usuarios han sido encontrados por Twitter Diggest</div>
 <ul>
 <?php 
@@ -18,7 +17,7 @@ foreach ($authors->rows as $author)
 {
 ?>
 	<li>
-		<?php echo $author->key; ?>: <?php echo $author->value; ?> tweets
+		<a href="author.php?name=<?php echo $author->key; ?>"><?php echo $author->key; ?></a>: <?php echo $author->value; ?> tweets
 	</li>
 <?php } ?>	
 </ul>
