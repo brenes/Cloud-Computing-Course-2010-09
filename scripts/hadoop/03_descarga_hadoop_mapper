@@ -1,5 +1,5 @@
 git clone git://github.com/brenes/Cloud-Computing-Course-2010-09.git -b hadoop /home/curso/Escritorio/curso/hadoop_descargado
-cd /home/curso/Escritorio/curso/buscador_descargado
+cd /home/curso/Escritorio/curso/hadoop_descargado
 git revert ac182b7318567e6fa8a0 -n
 git revert 15e7a8ec296b3cca2c8c -n
 git revert d00b54d868f210687bb3 -n
