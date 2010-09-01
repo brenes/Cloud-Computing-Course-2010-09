@@ -1,0 +1,3 @@
+git clone git://github.com/brenes/Cloud-Computing-Course-2010-09.git -b hadoop /home/curso/Escritorio/curso/hadoop_descargado
+cd /home/curso/Escritorio/curso/hadoop_descargado
+
